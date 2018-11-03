@@ -1,12 +1,14 @@
+#include "../scene/camera.bas"
 #include "../scene/world.bas"
-
-dim shared FPS_TEST as integer
 
 type App
     private:
         dim status as integer
         dim fps as integer
         dim maxFps as integer = 60
+        dim cam as Camera
+        dim resManager as ResLoader
+        dim world1 as World
     public:
     declare function frameCounter() As Integer
     declare function regulate(ByVal MyFps As Integer,ByRef fps As Integer) As Integer
@@ -36,14 +38,17 @@ End Function
 
 sub App.start(byval SWIDTH as integer, byval SHEIGHT as integer)
     dim gameOver as integer = 0
-    
+    this.resManager.init()
+    this.world1.init()
     do
         screenlock
         cls
+        this.world1.render(this.cam, resManager)
+        
         print "FPS: "; this.Fps
         screenunlock
         
         sleep this.regulate(this.MaxFps, this.fps)
          
-    loop until inkey = chr(255) + "k"
+    loop until inkey = chr(255) + "k" or multikey(SC_ESCAPE)
 end sub

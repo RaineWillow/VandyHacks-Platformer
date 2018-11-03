@@ -1,17 +1,19 @@
 'World.bas
+#include "../map/map.bas"
+
 
 type World
     private:
-        dim _placeHolder as integer = 1
+        dim currMap as Map
     public:
-        declare function update() as integer
-        declare sub render()
+        declare sub init()
+        declare sub render(byval Cam as Camera, byref res as ResLoader)
 end type
 
-function World.update() as integer
-    return 1
-end function
+sub World.init()
+    currMap.loadMap()
+end sub
 
-sub World.render()
-    
+sub World.render(byval cam as Camera, byref res as ResLoader)
+    currMap.render(cam, res)
 end sub

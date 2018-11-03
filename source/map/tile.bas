@@ -15,14 +15,14 @@ type Tile
 end type
 
 sub Tile.render(byval x as integer, byval y as integer, byval img as any pointer)
-    put (x, y), img
+    put (x, y), img, trans
 end sub
 
 sub Tile.readTile(byval tile as string)
     dim tileSet() as string
     split(tile, , , tileSet())
-    this.tileId = tileSet(0)
-    this.solid = tileSet(1)
+    this.tileId = val(tileSet(0))
+    this.solid = val(tileSet(1))
 end sub
 
 function Tile.id() as integer
@@ -33,7 +33,7 @@ function Tile.isSolid() as integer
     return this.solid
 end function
 
-function getTile() as string
+function Tile.getTile() as string
     return str(this.tileId) + " " + str(this.solid)
 end function
 
