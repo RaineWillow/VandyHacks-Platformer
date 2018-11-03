@@ -1,6 +1,6 @@
 #include "fbgfx.bi"
 using FB
-
+#include "utils/split.bas"
 #include "core/app.bas"
 
 dim shared SWIDTH as integer = 800

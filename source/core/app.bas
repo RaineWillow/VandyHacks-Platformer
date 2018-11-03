@@ -1,3 +1,5 @@
+#include "../scene/world.bas"
+
 type App
     private:
         dim status as integer
@@ -33,14 +35,17 @@ end function
 '===============================================================================
 
 sub App.start(byval SWIDTH as integer, byval SHEIGHT as integer)
+    dim gameOver as integer = 0
+    
     do
         screenlock
         cls
-        
         print "FPS: "; this.fps
         screenunlock
         
+        
+        
         sleep this.regulate(this.MaxFps, this.fps)
         sleep 
-    loop until inkey = chr(255) + "k" or multikey(SC_ESCAPE)
+    loop until inkey = chr(255) + "k"
 end sub

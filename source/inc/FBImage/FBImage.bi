@@ -3,7 +3,7 @@
 
 
 #ifdef __FB_WIN32__
-# libpath "lib/win"
+# libpath "inc/FBImage/lib/win"
 #else
 # libpath "lib/lin"
 #endif
