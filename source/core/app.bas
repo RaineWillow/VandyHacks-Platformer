@@ -52,7 +52,7 @@ sub App.start(byval SWIDTH as integer, byval SHEIGHT as integer)
     evQueue.addCallback(EventType.keyPress, @testEventHandler)  ' Temporary
     do
         'DO NOT PUT ANYTHING BUT RENDERING FUNCTIONS HERE
-        '------------------------------------------------
+        '-----------------------------------------------------------------------
         screenlock
         cls
         this.world1.render(this.cam, resManager)
@@ -60,8 +60,8 @@ sub App.start(byval SWIDTH as integer, byval SHEIGHT as integer)
         print "FPS: "; this.Fps
         print myVal
         screenunlock
-        '------------------------------------------------
-        'NO RENDERING FUNCTIONS BEYOND THIS POINT
+        '-----------------------------------------------------------------------
+        'DO NOT PUT ANY RENDERING FUNCTIONS BEYOND THIS POINT
         
         ' This if block is temporary
         if multikey(SC_A) then
