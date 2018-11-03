@@ -20,6 +20,8 @@ type App
     declare sub start(byval SWIDTH as integer, byval SHEIGHT as integer)
 end type
 
+'Magic stuff nobody understands
+'===============================================================================
 Function App.frameCounter() As Integer
     Var t1=Timer,t2=t1
     Static As Double t3,frames,answer
@@ -27,7 +29,7 @@ Function App.frameCounter() As Integer
     If (t2-t3) >= 1 Then t3 = t2 : answer = frames : frames = 0
     Function= answer
 End Function
-'==============================================================================
+'===============================================================================
 Function App.regulate(ByVal MyFps As Integer, ByRef fps As Integer) As Integer
     fps=FrameCounter()
     Static As Double timervalue,lastsleeptime
@@ -40,13 +42,17 @@ Function App.regulate(ByVal MyFps As Integer, ByRef fps As Integer) As Integer
     timervalue=Timer
     Return sleeptime
 End Function
+'===============================================================================
 
 sub App.start(byval SWIDTH as integer, byval SHEIGHT as integer)
     dim gameOver as integer = 0
+    'initialize stuff
     this.resManager.init()
     this.world1.init()
     evQueue.addCallback(EventType.keyPress, @testEventHandler)  ' Temporary
     do
+        'DO NOT PUT ANYTHING BUT RENDERING FUNCTIONS HERE
+        '------------------------------------------------
         screenlock
         cls
         this.world1.render(this.cam, resManager)
@@ -54,7 +60,9 @@ sub App.start(byval SWIDTH as integer, byval SHEIGHT as integer)
         print "FPS: "; this.Fps
         print myVal
         screenunlock
-
+        '------------------------------------------------
+        'NO RENDERING FUNCTIONS BEYOND THIS POINT
+        
         ' This if block is temporary
         if multikey(SC_A) then
             dim ev as AppEvent

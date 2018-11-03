@@ -19,6 +19,7 @@ sub Tile.render(byval x as integer, byval y as integer, byval img as any pointer
 end sub
 
 sub Tile.readTile(byval tile as string)
+    'get the tile from string data
     dim tileSet() as string
     split(tile, , , tileSet())
     this.tileId = val(tileSet(0))
@@ -34,6 +35,7 @@ function Tile.isSolid() as integer
 end function
 
 function Tile.getTile() as string
+    'returns the tile in string form
     return str(this.tileId) + " " + str(this.solid)
 end function
 

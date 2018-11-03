@@ -1,3 +1,5 @@
+'the camera type
+
 type Camera
     private:
         dim cameraX as integer

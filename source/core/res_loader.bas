@@ -10,6 +10,7 @@ type ResLoader
 end type
 
 sub ResLoader.loadTiles()
+    'loads the images into memory
     for i as integer = 0 to 40
         this.tileList(i) = imagecreate(68, 68)
     next
