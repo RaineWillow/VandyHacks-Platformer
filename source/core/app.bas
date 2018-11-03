@@ -1,27 +1,28 @@
 #include "../scene/world.bas"
 
+dim shared FPS_TEST as integer
+
 type App
     private:
         dim status as integer
-        dim fps as integer = 60
-        dim maxFps as integer
+        dim fps as integer
+        dim maxFps as integer = 60
     public:
     declare function frameCounter() As Integer
     declare function regulate(ByVal MyFps As Integer,ByRef fps As Integer) As Integer
     declare sub start(byval SWIDTH as integer, byval SHEIGHT as integer)
 end type
 
-'===============================================================================
-function App.frameCounter() as integer
+Function App.frameCounter() As Integer
     Var t1=Timer,t2=t1
     Static As Double t3,frames,answer
     frames+=1
     If (t2-t3) >= 1 Then t3 = t2 : answer = frames : frames = 0
-    function= answer
-end function
+    Function= answer
+End Function
 '==============================================================================
-function App.regulate(ByVal MyFps As Integer, ByRef fps As Integer) As Integer
-    fps=this.frameCounter()
+Function App.regulate(ByVal MyFps As Integer, ByRef fps As Integer) As Integer
+    fps=FrameCounter()
     Static As Double timervalue,lastsleeptime
     Dim As Double delta
     Var k=fps-myfps,i=1/myfps
@@ -30,9 +31,8 @@ function App.regulate(ByVal MyFps As Integer, ByRef fps As Integer) As Integer
     If sleeptime<1 Then sleeptime=1
     lastsleeptime=sleeptime
     timervalue=Timer
-    return sleeptime
-end function
-'===============================================================================
+    Return sleeptime
+End Function
 
 sub App.start(byval SWIDTH as integer, byval SHEIGHT as integer)
     dim gameOver as integer = 0
@@ -40,12 +40,10 @@ sub App.start(byval SWIDTH as integer, byval SHEIGHT as integer)
     do
         screenlock
         cls
-        print "FPS: "; this.fps
+        print "FPS: "; this.Fps
         screenunlock
         
-        
-        
         sleep this.regulate(this.MaxFps, this.fps)
-        sleep 
+         
     loop until inkey = chr(255) + "k"
 end sub
