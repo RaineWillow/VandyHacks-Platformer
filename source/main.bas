@@ -2,9 +2,11 @@
 using FB
 
 
-declare function main()
+declare sub main()
 
-function main()
+sub main()
     print "Hello World!"
     sleep
-end function
+end sub
+
+main()
