@@ -11,6 +11,8 @@ type Player
         
         dim groundTest as integer = 0
         dim spaceTest as integer = 0
+        
+        dim playerFrame as integer = 0
     public:
         dim rect as Box
         declare sub init()
@@ -57,6 +59,7 @@ sub Player.update(byval moveOff as double, byref chunk as Map)
     'get input
     if multikey(SC_A) then
         'move the player
+        this.playerFrame = 1
         if this.velocityX > 0 then
             this.velocityX = -1*this.velocityX
         end if
@@ -64,6 +67,7 @@ sub Player.update(byval moveOff as double, byref chunk as Map)
         if this.velocityX < -speed then this.velocityX = -speed
     elseif multikey(SC_D) then
         'move the player
+        this.playerFrame = 0
         if this.velocityX < 0 then
             this.velocityX = -1*this.velocityX
         end if
@@ -128,7 +132,7 @@ sub Player.update(byval moveOff as double, byref chunk as Map)
 end sub
 
 sub Player.render(byref res as ResLoader, byval cam as Camera)
-    put (this.rect.getBoxX()+cam.getCameraX(), this.rect.getBoxY()+cam.getCameraY()), res.getPlayerFrame(0), trans
+    put (this.rect.getBoxX()+cam.getCameraX(), this.rect.getBoxY()+cam.getCameraY()), res.getPlayerFrame(this.playerFrame), trans
     print "Tile X: "; this.getTileX()
     print "Tile Y: "; this.getTileY()
 end sub
