@@ -46,8 +46,7 @@ sub App.start(byval SWIDTH as integer, byval SHEIGHT as integer)
     'initialize stuff
     this.resManager.init()
     this.world1.init()
-    
-    
+    fbs_Play_Sound(this.resmanager.getSound(3))
     
     do
         'DO NOT PUT ANYTHING BUT RENDERING FUNCTIONS HERE
