@@ -7,7 +7,7 @@ type Player
         dim rateY as double = 20
         dim speed as double = 300
         dim gravity as double = 900
-        dim jump as double = 1200
+        dim jump as double = 1500
         
         dim groundTest as integer = 0
         dim spaceTest as integer = 0
@@ -27,7 +27,7 @@ type Player
 end type
 
 sub Player.init()
-    this.rect.init(80, 0, 68, 121)
+    this.rect.init(80, 80, 68, 121)
 end sub
 
 function Player.willCollide(byref chunk as Map, byval testBox as Box) as Box
@@ -121,10 +121,11 @@ sub Player.update(byval moveOff as double, byref chunk as Map)
     
     if collideBox.getBoxWidth() <> -1 then
         if this.velocityY > 0 then
-            this.velocityY = collideBox.getBoxY() - testBox.getBoxY2()
+            this.velocityY = collideBox.getBoxY() - testBox.getBoxY2() - 2
+            print this.velocityY
             this.groundTest = 1
         elseif this.velocityY < 0 then
-            this.velocityY = collideBox.getBoxY2() - testBox.getBoxY()
+            this.velocityY = collideBox.getBoxY2() - testBox.getBoxY() + 2
         end if
     end if
     '---------------------------------------------------------------------------

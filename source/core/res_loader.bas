@@ -61,7 +61,6 @@ sub ResLoader.init()
     this.loadBackground()
     this.loadPlayer()
     this.loadEnemy()
-    this.loadSounds()
 end sub
 
 function ResLoader.getTileImg(byval id as integer) as any pointer
