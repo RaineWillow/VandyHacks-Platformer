@@ -18,9 +18,6 @@ end sub
 
 
 sub Enemy.update(byval moveOff as double)
-    if moveOff > 1/30 then
-        moveOff = 0
-    end if
     this.rect.setBoxX(this.rect.getBoxX() + this.velocityX*moveOff)
     this.rect.setBoxY(this.rect.getBoxY() + this.velocityY*moveOff)
 end sub
