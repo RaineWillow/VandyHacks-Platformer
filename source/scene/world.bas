@@ -1,4 +1,5 @@
 'World.bas
+#include "../entity/player.bas"
 #include "../map/map.bas"
 
 

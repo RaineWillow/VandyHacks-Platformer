@@ -1,10 +1,6 @@
 #include "../scene/camera.bas"
 #include "../scene/world.bas"
-#include "events.bas"
 
-' These two lines are temporary
-dim shared myVal as integer = 0
-declare sub testEventHandler(byval ev as AppEvent)
 
 type App
     private:
@@ -49,7 +45,6 @@ sub App.start(byval SWIDTH as integer, byval SHEIGHT as integer)
     'initialize stuff
     this.resManager.init()
     this.world1.init()
-    evQueue.addCallback(EventType.keyPress, @testEventHandler)  ' Temporary
     do
         'DO NOT PUT ANYTHING BUT RENDERING FUNCTIONS HERE
         '-----------------------------------------------------------------------
@@ -58,25 +53,11 @@ sub App.start(byval SWIDTH as integer, byval SHEIGHT as integer)
         this.world1.render(this.cam, resManager)
         
         print "FPS: "; this.Fps
-        print myVal
         screenunlock
         '-----------------------------------------------------------------------
         'DO NOT PUT ANY RENDERING FUNCTIONS BEYOND THIS POINT
-        
-        ' This if block is temporary
-        if multikey(SC_A) then
-            dim ev as AppEvent
-            ev.ty = EventType.keyPress
-            ev.data.i = 10
-            evQueue.dispatch(ev)
-        end if
-        
+
         sleep this.regulate(this.MaxFps, this.fps)
          
     loop until inkey = chr(255) + "k" or multikey(SC_ESCAPE)
-end sub
-
-'This function is temporary
-sub testEventHandler(byval ev as AppEvent)
-    myVal = ev.data.i
 end sub
