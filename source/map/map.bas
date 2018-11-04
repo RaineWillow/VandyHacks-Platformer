@@ -13,7 +13,7 @@ end type
 sub Map.loadMap()
     dim currVal as string
     'open the file -- will soon be an argument in the func
-    open "res/map/test.dat" for input as #1
+    open "res/map/map.dat" for input as #1
     'loop through the file
     for x as integer = 0 to 63
         for y as integer = 0 to 63
