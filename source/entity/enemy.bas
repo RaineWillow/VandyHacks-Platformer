@@ -23,7 +23,6 @@ sub Enemy.update(byval moveOff as double)
     end if
     this.rect.setBoxX(this.rect.getBoxX() + this.velocityX*moveOff)
     this.rect.setBoxY(this.rect.getBoxY() + this.velocityY*moveOff)
-    print "real enemy velocity vec: (";this.velocityX*moveOff;", ";this.velocityY*moveOff;")"
 end sub
 
 
