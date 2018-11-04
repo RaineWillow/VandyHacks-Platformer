@@ -4,16 +4,25 @@ type Camera
     private:
         dim cameraX as integer
         dim cameraY as integer
+        dim speed as integer = 100
     public:
         
-        declare sub update(byval playerX as integer, byval playerY as integer)
+        declare sub update(byval moveOff as double)
         declare function getCameraX() as integer
         declare function getCameraY() as integer
 end type
 
-sub Camera.update(byval playerX as integer, byval playerY as integer)
-    this.cameraX = playerX
-    this.cameraY = playerY
+sub Camera.update(byval moveOff as double)
+    if multikey(SC_UP) then
+        this.cameraY += speed*moveOff
+    elseif multikey(SC_DOWN) then
+        this.cameraY -= speed*moveOff
+    end if
+    if multikey(SC_LEFT) then
+        this.cameraX += speed*moveOff
+    elseif multikey(SC_RIGHT) then
+        this.cameraX -= speed*moveOff
+    end if
 end sub
 
 function Camera.getCameraX as integer
