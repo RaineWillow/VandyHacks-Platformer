@@ -49,6 +49,7 @@ sub App.start(byval SWIDTH as integer, byval SHEIGHT as integer)
     fbs_Play_Sound(this.resmanager.getSound(3))
     
     do
+        dim camPlayer as Player
         'DO NOT PUT ANYTHING BUT RENDERING FUNCTIONS HERE
         '-----------------------------------------------------------------------
         screenlock
@@ -61,7 +62,10 @@ sub App.start(byval SWIDTH as integer, byval SHEIGHT as integer)
         'DO NOT PUT ANY RENDERING FUNCTIONS BEYOND THIS POINT
         
         this.world1.update(this.movementAmount)
-        this.cam.update(this.movementAmount)
+        
+        camPlayer = this.world1.getChar()
+        
+        this.cam.update(camPlayer.rect.getBoxX(), camPlayer.rect.getBoxY())
         
         sleep this.regulate(this.MaxFps, this.fps)
         this.movementAmount = 1/this.fps

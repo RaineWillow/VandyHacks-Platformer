@@ -41,8 +41,8 @@ sub ResLoader.loadTiles()
 end sub
 
 sub ResLoader.loadBackground()
-    this.background = imagecreate(2160, 720)
-    bload "res/backgrounds/background.bmp", this.background
+    this.background = imagecreate(1600, 640)
+    bload "res/backgrounds/new_back.bmp", this.background
 end sub
 
 sub ResLoader.loadPlayer()
