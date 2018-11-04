@@ -3,8 +3,8 @@ type Player
         dim velocityX as double
         dim velocityY as double
         
-        dim rate as double = 50
-        dim speed as double = 100
+        dim rate as double = 10
+        dim speed as double = 200
     public:
         dim rect as Box
         declare sub init()
@@ -22,8 +22,6 @@ sub Player.update(byval moveOff as double)
     this.rect.setBoxX(this.rect.getBoxX() + this.velocityX*moveOff)
     this.rect.setBoxY(this.rect.getBoxY() + this.velocityY*moveOff)
     
-    print this.velocityX*moveOff
-    
     if multikey(SC_A) then
         this.velocityX -= rate
         if this.velocityX < -speed then this.velocityX = -speed
@@ -31,8 +29,10 @@ sub Player.update(byval moveOff as double)
         this.velocityX += rate
         if this.velocityX > speed then this.velocityX = speed
     else
-        if this.velocityX <> 0 then
-            this.velocityX = 0
+        if this.velocityX < 0 then
+            this.velocityX += rate
+        elseif this.velocityX > 0 then
+            this.velocityX -= rate/2
         end if
     end if
 end sub
