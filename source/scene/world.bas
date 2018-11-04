@@ -18,17 +18,17 @@ end type
 sub World.init()
     this.currMap.loadMap()
     this.character.init()
-    this.theMonsterWhoShallNotBeNamed.init()
 end sub
 
 
 sub World.update(byval moveOff as double)
+    if moveOff > 1/30 then
+        moveOff = 0
+    end if
     this.character.update(moveOff)
-    this.theMonsterWhoShallNotBeNamed.update(moveOff)
 end sub
 
 sub World.render(byval cam as Camera, byref res as ResLoader)
     this.currMap.render(cam, res)
     this.character.render(res)
-    this.theMonsterWhoShallNotBeNamed.render(res)
 end sub
