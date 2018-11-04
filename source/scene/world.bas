@@ -24,7 +24,7 @@ end sub
 
 sub World.update(byval moveOff as double)
     this.character.update(moveOff)
-    this.theMonsterWhoShallNotBeNamed.update()
+    this.theMonsterWhoShallNotBeNamed.update(moveOff)
 end sub
 
 sub World.render(byval cam as Camera, byref res as ResLoader)

@@ -2,12 +2,12 @@
 
 type Enemy
     private:
-        dim velocityX as integer = 10
-        dim velocityY as integer = 10
+        dim velocityX as double = 100
+        dim velocityY as double = 100
     public:
         dim rect as Box
         declare sub init()
-        declare sub update()
+        declare sub update(byval moveOff as double)
         declare sub render(byref res as ResLoader)
 end type
 
@@ -17,9 +17,13 @@ sub Enemy.init()
 end sub
 
 
-sub Enemy.update()
-    this.rect.setBoxX(this.rect.getBoxX() + this.velocityX)
-    this.rect.setBoxY(this.rect.getBoxY() + this.velocityY)
+sub Enemy.update(byval moveOff as double)
+    if moveOff > 1/30 then
+        moveOff = 0
+    end if
+    this.rect.setBoxX(this.rect.getBoxX() + this.velocityX*moveOff)
+    this.rect.setBoxY(this.rect.getBoxY() + this.velocityY*moveOff)
+    print "real enemy velocity vec: (";this.velocityX*moveOff;", ";this.velocityY*moveOff;")"
 end sub
 
 
