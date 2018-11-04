@@ -5,9 +5,7 @@ type ResLoader
         
         dim playerSprites(0 to 10) as any pointer
         dim enemySprites(0 to 2) as any pointer
-
-        dim gameWaves(0 to 4) as integer
-        dim gameSounds(0 to 4) as integer
+        
     public:
         declare sub loadTiles()
         declare sub loadBackground()
@@ -15,16 +13,11 @@ type ResLoader
         declare sub loadPlayer()
         declare sub loadEnemy()
 
-        declare sub loadSounds()
-        
         declare sub init()
         declare function getTileImg(byval id as integer) as any pointer
         declare function getBackgroundImg() as any pointer
         declare function getPlayerFrame(byval id as integer) as any pointer
         declare function getEnemyFrame(byval id as integer) as any pointer
-
-        declare function getWave(byval id as integer) as integer
-        declare function getSound(byval id as integer) as integer
 end type
 
 sub ResLoader.loadTiles()
@@ -63,19 +56,7 @@ sub ResLoader.loadEnemy()
     bload "res/ent/tiny_enemy2.bmp", this.enemySprites(1)
 end sub
 
-sub ResLoader.loadSounds()
-    fbs_Load_WAVFile("res/sounds/Curser Move.wav", @this.gameWaves(0))
-    fbs_Load_WAVFile("res/sounds/Jump.wav", @this.gameWaves(1))
-    fbs_Load_WAVFile("res/sounds/Select.wav", @this.gameWaves(2))
-    fbs_Load_WAVFile("res/sounds/Village Song.wav", @this.gameWaves(3))
-
-    for i as integer = 0 to 3
-        fbs_Create_Sound(this.gameWaves(i), @this.gameSounds(i))
-    next
-end sub
-
 sub ResLoader.init()
-    fbs_Init()
     this.loadTiles()
     this.loadBackground()
     this.loadPlayer()
@@ -97,12 +78,4 @@ end function
 
 function ResLoader.getEnemyFrame(byval id as integer) as any pointer
     return this.enemySprites(id)
-end function
-
-function ResLoader.getWave(byval id as integer) as integer
-    return this.gameWaves(id)
-end function
-
-function ResLoader.getSound(byval id as integer) as integer
-    return this.gameSounds(id)
 end function
