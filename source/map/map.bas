@@ -29,8 +29,23 @@ end sub
 
 sub Map.render(byref cam as Camera, byref res as ResLoader)
     'loop through the tiles and calculate it's position onscreen
-    for x as integer = 0 to 63
-        for y as integer = 0 to 63
+    dim startX as integer
+    dim endX as integer
+    dim startY as integer
+    dim endY as integer
+
+    startX = (-100 - cam.getCameraX())/68
+    endX = (SWIDTH - cam.getCameraX())/68
+    startY = (-100 - cam.getCameraY())/68
+    endY = (SHEIGHT - cam.getCameraY())/68
+
+    startX = iif(startX <= 63, iif(startX >= 0, startX, 0), 63)
+    endX = iif(endX <= 63, iif(endX >= 0, endX, 0), 63)
+    startY = iif(startY <= 63, iif(startY >= 0, startY, 0), 63)
+    endY = iif(endY <= 63, iif(endY >= 0, endY, 0), 63)
+
+    for x as integer = startX to endX
+        for y as integer = startY to endY
             this.chunk(x, y).render(x*68+cam.getCameraX(), y*68+cam.getCameraY(), res.getTileImg(this.chunk(x, y).id()))
         next
     next
