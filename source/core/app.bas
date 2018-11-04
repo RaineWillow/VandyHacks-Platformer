@@ -61,7 +61,7 @@ sub App.start(byval SWIDTH as integer, byval SHEIGHT as integer)
         '-----------------------------------------------------------------------
         'DO NOT PUT ANY RENDERING FUNCTIONS BEYOND THIS POINT
         
-        
+        this.world1.update(this.movementAmount)
 
         sleep this.regulate(this.MaxFps, this.fps)
         this.movementAmount = 1/this.fps

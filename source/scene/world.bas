@@ -9,7 +9,7 @@ type World
         dim character as Player
     public:
         declare sub init()
-        declare sub update()
+        declare sub update(byval moveOff as double)
         declare sub render(byval Cam as Camera, byref res as ResLoader)
 end type
 
@@ -18,8 +18,8 @@ sub World.init()
     this.character.init()
 end sub
 
-sub World.update()
-    this.character.update()
+sub World.update(byval moveOff as double)
+    this.character.update(moveOff)
 end sub
 
 sub World.render(byval cam as Camera, byref res as ResLoader)

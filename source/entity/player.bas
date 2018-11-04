@@ -1,11 +1,14 @@
 type Player
     private:
-        dim velocityX as integer
-        dim velocityY as integer
+        dim velocityX as double
+        dim velocityY as double
+        
+        dim rate as double = 50
+        dim speed as double = 100
     public:
         dim rect as Box
         declare sub init()
-        declare sub update()
+        declare sub update(byval moveOff as double)
         declare sub render(byref res as ResLoader)
         declare sub onKeyPress(byval scancode as long)
         declare sub onKeyRelease(byval scancode as long)
@@ -15,9 +18,23 @@ sub Player.init()
     this.rect.init(0, 0, 68, 121)
 end sub
 
-sub Player.update()
-    this.rect.setBoxX(this.rect.getBoxX() + this.velocityX)
-    this.rect.setBoxY(this.rect.getBoxY() + this.velocityY)
+sub Player.update(byval moveOff as double)
+    this.rect.setBoxX(this.rect.getBoxX() + this.velocityX*moveOff)
+    this.rect.setBoxY(this.rect.getBoxY() + this.velocityY*moveOff)
+    
+    print this.velocityX*moveOff
+    
+    if multikey(SC_A) then
+        this.velocityX -= rate
+        if this.velocityX < -speed then this.velocityX = -speed
+    elseif multikey(SC_D) then
+        this.velocityX += rate
+        if this.velocityX > speed then this.velocityX = speed
+    else
+        if this.velocityX <> 0 then
+            this.velocityX = 0
+        end if
+    end if
 end sub
 
 sub Player.render(byref res as ResLoader)
