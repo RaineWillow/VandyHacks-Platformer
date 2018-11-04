@@ -29,6 +29,10 @@ sub World.update(byval moveOff as double)
 end sub
 
 sub World.render(byval cam as Camera, byref res as ResLoader)
+    ' render world background
+    put (0, 0), res.getBackgroundImg()
+
+    ' render everything else
     this.currMap.render(cam, res)
     this.character.render(res, cam)
 end sub
