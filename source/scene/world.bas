@@ -13,6 +13,8 @@ type World
         declare sub init()
         declare sub update(byval moveOff as double)
         declare sub render(byval Cam as Camera, byref res as ResLoader)
+        
+        declare function getChar() as Player
 end type
 
 sub World.init()
@@ -36,3 +38,9 @@ sub World.render(byval cam as Camera, byref res as ResLoader)
     this.currMap.render(cam, res)
     this.character.render(res, cam)
 end sub
+
+function World.getChar() as Player
+    return this.character
+end function
+
+    
