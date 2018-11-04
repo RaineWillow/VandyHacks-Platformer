@@ -4,7 +4,7 @@ type Camera
     private:
         dim cameraX as double
         dim cameraY as double
-        dim speed as double = 100
+        dim speed as double = 500
     public:
         
         declare sub update(byval moveOff as double)
