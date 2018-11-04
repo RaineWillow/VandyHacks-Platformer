@@ -9,7 +9,7 @@ type Player
         dim rect as Box
         declare sub init()
         declare sub update(byval moveOff as double)
-        declare sub render(byref res as ResLoader)
+        declare sub render(byref res as ResLoader, byval cam as Camera)
         declare sub onKeyPress(byval scancode as long)
         declare sub onKeyRelease(byval scancode as long)
 end type
@@ -37,8 +37,8 @@ sub Player.update(byval moveOff as double)
     end if
 end sub
 
-sub Player.render(byref res as ResLoader)
-    put (this.rect.getBoxX(), this.rect.getBoxY()), res.getPlayerFrame(0), trans
+sub Player.render(byref res as ResLoader, byval cam as Camera)
+    put (this.rect.getBoxX()+cam.getCameraX(), this.rect.getBoxY()+cam.getCameraY()), res.getPlayerFrame(0), trans
 end sub
 
 sub Player.onKeyPress(byval scancode as long)

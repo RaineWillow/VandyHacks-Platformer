@@ -30,5 +30,5 @@ end sub
 
 sub World.render(byval cam as Camera, byref res as ResLoader)
     this.currMap.render(cam, res)
-    this.character.render(res)
+    this.character.render(res, cam)
 end sub
