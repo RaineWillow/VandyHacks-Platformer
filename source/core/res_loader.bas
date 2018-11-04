@@ -1,12 +1,16 @@
 type ResLoader
     private:
         dim tileList(0 to 40) as any pointer
+        
+        dim playerSprites(0 to 10) as any pointer
     public:
         declare sub loadTiles()
         
+        declare sub loadPlayer()
         
         declare sub init()
         declare function getTileImg(byval id as integer) as any pointer
+        declare function getPlayerFrame(byval id as integer) as any pointer
 end type
 
 sub ResLoader.loadTiles()
@@ -22,12 +26,24 @@ sub ResLoader.loadTiles()
     
 end sub
 
+sub ResLoader.loadPlayer()
+    for i as integer = 0 to 10
+        this.playerSprites(i) = imagecreate(68, 121)
+    next
+    
+    bload "res/ent/sprite.bmp", this.playerSprites(0)
+end sub
+
 sub ResLoader.init()
     this.loadTiles()
+    this.loadPlayer()
 end sub
 
 function ResLoader.getTileImg(byval id as integer) as any pointer
     return this.tileList(id)
 end function
 
-    
+function ResLoader.getPlayerFrame(byval id as integer) as any pointer
+    return this.playerSprites(id)
+end function
+

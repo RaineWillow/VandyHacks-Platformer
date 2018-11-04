@@ -6,7 +6,7 @@ type Map
     
     public:
         declare sub loadMap()
-        declare sub render(byval cam as Camera, byref res as ResLoader)
+        declare sub render(byref cam as Camera, byref res as ResLoader)
 end type
 
 'load a map from a file
@@ -25,11 +25,11 @@ sub Map.loadMap()
     close #1
 end sub
 
-sub Map.render(byval cam as Camera, byref res as ResLoader)
+sub Map.render(byref cam as Camera, byref res as ResLoader)
     'loop through the tiles and calculate it's position onscreen
     for x as integer = 0 to 63
         for y as integer = 0 to 63
-            this.chunk(x, y).render(x*68+cam.getCameraX(), y*68+cam.getCameraX(), res.getTileImg(this.chunk(x, y).id()))
+            this.chunk(x, y).render(x*68+cam.getCameraX(), y*68+cam.getCameraY(), res.getTileImg(this.chunk(x, y).id()))
         next
     next
 end sub

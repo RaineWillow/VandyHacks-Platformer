@@ -6,10 +6,11 @@ type App
     private:
         dim status as integer
         dim fps as integer
-        dim maxFps as integer = 60
+        dim maxFps as integer = 200
         dim cam as Camera
         dim resManager as ResLoader
         dim world1 as World
+        dim movementAmount as double
     public:
     declare function frameCounter() As Integer
     declare function regulate(ByVal MyFps As Integer,ByRef fps As Integer) As Integer
@@ -45,6 +46,9 @@ sub App.start(byval SWIDTH as integer, byval SHEIGHT as integer)
     'initialize stuff
     this.resManager.init()
     this.world1.init()
+    
+    
+    
     do
         'DO NOT PUT ANYTHING BUT RENDERING FUNCTIONS HERE
         '-----------------------------------------------------------------------
@@ -56,8 +60,11 @@ sub App.start(byval SWIDTH as integer, byval SHEIGHT as integer)
         screenunlock
         '-----------------------------------------------------------------------
         'DO NOT PUT ANY RENDERING FUNCTIONS BEYOND THIS POINT
+        
+        
 
         sleep this.regulate(this.MaxFps, this.fps)
-         
+        this.movementAmount = 1/this.fps
+        
     loop until inkey = chr(255) + "k" or multikey(SC_ESCAPE)
 end sub
